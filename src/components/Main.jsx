@@ -10,20 +10,22 @@ export default function Main() {
   const [isLoading, setIsLosading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}=matrix`)
+    fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=matrix`)
       .then((res) => res.json())
       .then((res) => setMovieList(res.Search))
+      .catch((res) => console.log('Error fetch!', res))
       .finally(() => setIsLosading(false));
   }, []);
 
   const handleSearch = (value, filter) => {
     const filters = filter === 'all' ? null : `&type=${filter}`;
     setIsLosading(true);
-    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}=${value}${filters}`)
+    fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${value}${filters}`)
       .then((res) => res.json())
       .then((res) => {
         res.Response === 'True' ? setMovieList(res.Search) : setMovieList(null);
       })
+      .catch((res) => console.log('Error fetch!', res))
       .finally(() => {
         setIsLosading(false);
       });
