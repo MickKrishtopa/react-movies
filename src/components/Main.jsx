@@ -18,7 +18,7 @@ export default function Main() {
   }, []);
 
   const handleSearch = (value, filter) => {
-    const filters = filter === 'all' ? null : `&type=${filter}`;
+    const filters = filter === 'all' ? '' : `&type=${filter}`;
     setIsLosading(true);
     fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${value}${filters}`)
       .then((res) => res.json())
