@@ -6,3 +6,5 @@
   - JavaScript
   - React
   - Работа с API
+
+Проект завершен.
